@@ -781,6 +781,25 @@ body {
 .theme-toggle-btn:hover { background: var(--surface); }
 .theme-toggle-btn:active { background: var(--surface2); }
 
+/* ── SOCIAL LINKS ── */
+.social-links {
+  display: flex; gap: 8px; padding: 6px 2px 2px;
+}
+.social-btn {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 8px 10px; border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent; color: var(--text2);
+  font-size: 11.5px; font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer; text-decoration: none;
+  transition: all 0.15s; touch-action: manipulation;
+}
+.social-btn:hover { background: var(--sidebar-hover); color: var(--text); border-color: var(--surface2); }
+.social-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+.social-btn.insta:hover { color: #e1306c; border-color: #e1306c; background: rgba(225,48,108,0.08); }
+.social-btn.yt:hover { color: #ff0000; border-color: #ff0000; background: rgba(255,0,0,0.08); }
+
 /* ── CLEAR HISTORY BTN ── */
 .clear-history-btn {
   width: 100%; display: flex; align-items: center; gap: 10px;
@@ -1339,6 +1358,17 @@ body.light-mode .input-box {
         <div class="profile-sub">Made in Kashmir 🏔️</div>
       </div>
     </div>
+    <!-- Social Links -->
+    <div class="social-links">
+      <a class="social-btn insta" href="https://www.instagram.com/rafiqat.khatana?igsh=bHR3eWs2YXBxM3My" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a class="social-btn yt" href="https://www.youtube.com/@Soulreaper8-v3c" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+        YouTube
+      </a>
+    </div>
     <button class="export-btn" onclick="exportChat()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Chat export karo
@@ -1429,7 +1459,7 @@ body.light-mode .input-box {
         </div>
         <!-- Input row -->
         <div class="input-row">
-          <input type="file" id="file-input" accept="image/*,video/*,audio/*" onchange="handleFile(event)">
+          <input type="file" id="file-input" accept="image/*,video/*,audio/*,text/*,.html,.htm,.css,.js,.json,.xml,.csv,.txt,.pdf,.py,.java,.cpp,.c,.ts,.md" onchange="handleFile(event)">
           <input type="file" id="edit-file-input" accept="image/*" onchange="openPhotoEditor(event)" style="display:none">
           <button class="attach-btn" onclick="document.getElementById('file-input').click()" title="File attach karo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05L12.25 20.24a5.5 5.5 0 01-7.78-7.78l9.19-9.19a3.5 3.5 0 014.95 4.95L9.41 17.41a1.5 1.5 0 01-2.12-2.12l8.19-8.19"/></svg>
@@ -1530,7 +1560,13 @@ USER KI BAAT SAMAJHNA:
 - Message ko CAREFULLY padho. Galat assumption MAT karo.
 - Unclear message ho toh pehle samjho phir jawab do.
 
-LANGUAGE: User jis language mein baat kare, USI mein jawab do (Urdu, Hindi, English, Kashmiri, Punjabi, Arabic — sab)
+LANGUAGE RULES — BOHOT ZAROORI:
+- User jis language mein baat kare, USI mein jawab do.
+- Agar user URDU ya Roman Urdu mein baat kare — SAHI URDU alfaz use karo:
+  SAHI Urdu: tareekh, tahzeeb, jugrafiya, siyasat, muashi halaat, khulasa, mazhab, zaban, mulk, jung, aman, riwayat, adab
+  GALAT (Hindi/Sanskrit): itihas, sabhyata, bhugol, rajneeti, aarthik, nishkarsh, dharm, bhasha, desh, yuddh, shanti, vividh, samriddh
+- Urdu aur Hindi MILAO MAT — ek hi zabaan mein jawab do
+- Roman Urdu mein pooche toh Roman Urdu mein jawab do, lekin alfaz Urdu ke hon
 
 CAPABILITIES:
 - Writing: essays, emails, letters, stories, poetry, reports
@@ -1545,6 +1581,7 @@ RESPONSE FORMAT:
 - Complex topic: headings (##), lists, bold, code blocks
 - Tables for comparisons
 - Emojis naturally - not overdone
+- Repeat MAT karo — ek baat sirf ek baar
 
 PERSONALITY: Confident, warm, helpful like a smart friend. Never rude. Honest if unsure.`
 
@@ -1919,10 +1956,15 @@ function sendSuggestion(text) {
 }
 
 // ── File handling ──
-function getFileCat(mime) {
+function getFileCat(mime, name) {
   if (mime.startsWith('image/')) return 'image';
   if (mime.startsWith('video/')) return 'video';
   if (mime.startsWith('audio/')) return 'audio';
+  // Text-readable files — HTML, JS, CSS, JSON, Python, etc.
+  if (mime.startsWith('text/') || mime === 'application/json' || mime === 'application/xml') return 'text';
+  const ext = (name||'').split('.').pop().toLowerCase();
+  const textExts = ['html','htm','css','js','ts','json','xml','csv','txt','md','py','java','cpp','c','php','sql','sh','yaml','yml'];
+  if (textExts.includes(ext)) return 'text';
   return 'other';
 }
 function formatSize(bytes) {
@@ -1933,19 +1975,37 @@ function formatSize(bytes) {
 function handleFile(e) {
   const file = e.target.files[0]; if (!file) return;
   if (file.size > 20*1024*1024) { showToast('⚠️ File too large (max 20MB)'); e.target.value=''; return; }
-  const cat = getFileCat(file.type);
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const dataUrl = ev.target.result;
-    pendingFile = { base64: dataUrl.split(',')[1], mime: file.type||'application/octet-stream', name: file.name, size: file.size, category: cat, dataUrl };
-    const iconEl = document.getElementById('preview-icon-el');
-    if (cat === 'image') iconEl.innerHTML = `<img class="preview-thumb" src="${dataUrl}">`;
-    else { const ic={video:'🎬',audio:'🎵',other:'📄'}; iconEl.innerHTML = `<div class="preview-icon-box">${ic[cat]||'📄'}</div>`; }
-    document.getElementById('preview-fname').textContent = file.name;
-    document.getElementById('preview-fsize').textContent = formatSize(file.size);
-    document.getElementById('file-preview-strip').classList.add('show');
-  };
-  reader.readAsDataURL(file);
+  const cat = getFileCat(file.type, file.name);
+
+  if (cat === 'text') {
+    // Text/code files — seedha content padho aur AI ko bhejna
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const textContent = ev.target.result;
+      pendingFile = { textContent, mime: file.type||'text/plain', name: file.name, size: file.size, category: 'text' };
+      const iconEl = document.getElementById('preview-icon-el');
+      const ext = file.name.split('.').pop().toUpperCase();
+      const extEmoji = {HTML:'🌐',JS:'⚡',CSS:'🎨',JSON:'📋',PY:'🐍',MD:'📝',CSV:'📊'}[ext] || '📄';
+      iconEl.innerHTML = `<div class="preview-icon-box">${extEmoji}</div>`;
+      document.getElementById('preview-fname').textContent = file.name;
+      document.getElementById('preview-fsize').textContent = formatSize(file.size) + ' · ' + ext;
+      document.getElementById('file-preview-strip').classList.add('show');
+    };
+    reader.readAsText(file, 'UTF-8');
+  } else {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const dataUrl = ev.target.result;
+      pendingFile = { base64: dataUrl.split(',')[1], mime: file.type||'application/octet-stream', name: file.name, size: file.size, category: cat, dataUrl };
+      const iconEl = document.getElementById('preview-icon-el');
+      if (cat === 'image') iconEl.innerHTML = `<img class="preview-thumb" src="${dataUrl}">`;
+      else { const ic={video:'🎬',audio:'🎵',other:'📄'}; iconEl.innerHTML = `<div class="preview-icon-box">${ic[cat]||'📄'}</div>`; }
+      document.getElementById('preview-fname').textContent = file.name;
+      document.getElementById('preview-fsize').textContent = formatSize(file.size);
+      document.getElementById('file-preview-strip').classList.add('show');
+    };
+    reader.readAsDataURL(file);
+  }
   e.target.value = '';
 }
 function removeFile() {
@@ -2000,6 +2060,14 @@ async function sendMessage() {
         { type: 'image_url', image_url: { url: `data:${file.mime};base64,${file.base64}` } },
         { type: 'text', text: displayText }
       ];
+    } else if (file.category === 'text') {
+      // Code/HTML/text file — poora content AI ko bhejna with context
+      const MAX_CHARS = 80000; // ~20k tokens
+      const truncated = file.textContent.length > MAX_CHARS
+        ? file.textContent.slice(0, MAX_CHARS) + '\n\n[... File bahut badi hai, upar tak ka content diya gaya hai]'
+        : file.textContent;
+      const ext = file.name.split('.').pop().toLowerCase();
+      userContent = 'User ne ek **' + ext.toUpperCase() + '** file share ki hai: "' + file.name + '"\n\n```' + ext + '\n' + truncated + '\n```\n\n' + (displayText || 'Is file ke baare mein batao ya is mein kya hai explain karo.');
     } else {
       const lbl = { video:'VIDEO', audio:'AUDIO/SONG', other:'FILE' };
       userContent = `[User ne ek ${lbl[file.category]||'FILE'} share ki hai: "${file.name}"] ${displayText}`;
@@ -2145,7 +2213,7 @@ async function sendMessage() {
       success = true;
 
     } catch (err) {
-      clearTimeout && clearTimeout();
+      if (typeof timeoutId !== "undefined") clearTimeout(timeoutId);
       document.getElementById('typing-wrap')?.remove();
 
       if (err.name === 'AbortError') {
@@ -2662,76 +2730,91 @@ function stopVoice() {
 }
 
 // ── REGENERATE ──
-function regenerateResponse() {
+async function regenerateResponse() {
   if (isTyping || convHistory.length < 2) return;
-  // Remove last AI response
+  // Remove last AI response from history and DOM
   convHistory.pop();
-  var aiWraps = chatInner.querySelectorAll('.ai-wrap');
+  const aiWraps = chatInner.querySelectorAll('.ai-wrap');
   if (aiWraps.length > 0) aiWraps[aiWraps.length - 1].remove();
   showTyping();
   isTyping = true;
   sendBtn.disabled = true;
 
-  fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + GROQ_API_KEY },
-    body: JSON.stringify({
-      model: 'llama-3.3-70b-versatile',
-      max_tokens: 4096,
-      temperature: 0.85,
-      stream: true,
-      messages: [{ role: 'system', content: SYSTEM_PROMPT }].concat(
-        convHistory.map(function(m) {
-          return { role: m.role === 'assistant' ? 'assistant' : 'user', content: m.content };
-        })
-      )
-    })
-  }).then(function(res) {
-    document.getElementById('typing-wrap') && document.getElementById('typing-wrap').remove();
-    var streamEl = appendAiMsg('', true);
-    var fullText = '';
-    var reader = res.body.getReader();
-    var decoder = new TextDecoder();
+  const historyMsgs = convHistory.map(m => ({
+    role: m.role === 'assistant' ? 'assistant' : 'user',
+    content: Array.isArray(m.content)
+      ? (m.content.filter(b => b.type === 'text').map(b => b.text).join(' ') || '[Photo]')
+      : m.content
+  }));
 
-    function readChunk() {
-      return reader.read().then(function(result) {
-        if (result.done) {
-          // Finalize
-          if (isRTL(fullText)) { streamEl.className = 'ai-text rtl-text'; streamEl.textContent = fullText; }
-          else { streamEl.className = 'ai-text'; streamEl.innerHTML = marked.parse(fullText); }
-          addMsgActions(streamEl, fullText);
-          convHistory.push({ role: 'assistant', content: fullText });
-          saveSession();
-          isTyping = false;
-          sendBtn.disabled = false;
-          showToast('Response regenerate ho gaya!');
-          return;
-        }
-        var lines = decoder.decode(result.value, { stream: true }).split('\n');
-        lines.forEach(function(line) {
-          if (!line.startsWith('data: ')) return;
-          var data = line.slice(6).trim();
-          if (data === '[DONE]') return;
-          try {
-            var delta = JSON.parse(data).choices[0].delta.content || '';
-            if (delta) {
-              fullText += delta;
-              streamEl.innerHTML = marked.parse(fullText) + '<span class="stream-cursor"></span>';
-              scrollBottom();
-            }
-          } catch(e) {}
+  const payload = {
+    max_tokens: 4096, temperature: 0.85, stream: true,
+    messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...historyMsgs]
+  };
+
+  try {
+    let res;
+    // Use same multi-key logic as sendMessage
+    if (!_useOR && GROQ_API_KEYS.length > 0) {
+      const gk = _nextGroqKey();
+      if (gk) {
+        res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + gk.key },
+          body: JSON.stringify({ ...payload, model: GROQ_TEXT_MODEL })
         });
-        return readChunk();
-      });
+        if (res.status === 429 || res.status === 401) { _failGroqKey(gk.idx); }
+      }
     }
-    return readChunk();
-  }).catch(function(err) {
-    var tw = document.getElementById('typing-wrap');
-    if (tw) tw.remove();
-    appendAiMsg('Network error. Dobara try karein.');
-    isTyping = false;
-    sendBtn.disabled = false;
-  });
+    if (!res || !res.ok) {
+      if (OPENROUTER_API_KEY) {
+        res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OPENROUTER_API_KEY, 'HTTP-Referer': 'https://zaki-ai.app', 'X-Title': 'Zaki AI' },
+          body: JSON.stringify({ ...payload, model: OR_TEXT_MODEL })
+        });
+      } else {
+        throw new Error('No API keys available');
+      }
+    }
+
+    document.getElementById('typing-wrap')?.remove();
+    const streamEl = appendAiMsg('', true);
+    let fullText = '';
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      for (const line of decoder.decode(value, { stream: true }).split('\n')) {
+        if (!line.startsWith('data: ')) continue;
+        const data = line.slice(6).trim();
+        if (data === '[DONE]') break;
+        try {
+          const delta = JSON.parse(data).choices?.[0]?.delta?.content || '';
+          if (delta) {
+            fullText += delta;
+            if (isRTL(fullText)) { streamEl.className = 'ai-text rtl-text'; streamEl.textContent = fullText; }
+            else { streamEl.className = 'ai-text'; streamEl.innerHTML = marked.parse(fullText) + '<span class="stream-cursor"></span>'; }
+            scrollBottom();
+          }
+        } catch(e) {}
+      }
+    }
+    // Finalize
+    if (isRTL(fullText)) { streamEl.className = 'ai-text rtl-text'; streamEl.textContent = fullText; }
+    else { streamEl.className = 'ai-text'; streamEl.innerHTML = marked.parse(fullText); }
+    addMsgActions(streamEl, fullText);
+    convHistory.push({ role: 'assistant', content: fullText });
+    saveSession();
+    showToast('✨ Response regenerate ho gaya!');
+  } catch(err) {
+    document.getElementById('typing-wrap')?.remove();
+    appendAiMsg('⚠️ Regenerate fail. Dobara try karein.');
+  }
+  isTyping = false;
+  sendBtn.disabled = false;
 }
 
 // Helper: add copy+regenerate buttons after AI message
@@ -2999,44 +3082,58 @@ setInterval(function() {
 
 // ── KEYBOARD FIX: Input bar keyboard ke saath upar aaye ──
 (function() {
-  var inputZone = document.getElementById('input-zone');
-  var chatWrap = document.getElementById('chat-wrap');
-  
+  // DOM ready hone ke baad elements lo — null-safe
+  function getEls() {
+    return {
+      inputZone: document.getElementById('input-zone'),
+      chatWrap:  document.getElementById('chat-wrap') || document.getElementById('chat-scroll'),
+      userInput: document.getElementById('user-input')
+    };
+  }
+
   function adjustForKeyboard() {
     if (!window.visualViewport) return;
+    var els = getEls();
     var vv = window.visualViewport;
     var windowH = window.innerHeight;
     var viewportH = vv.height;
     var keyboardH = windowH - viewportH - vv.offsetTop;
     if (keyboardH < 50) keyboardH = 0;
-    
-    if (inputZone) {
-      inputZone.style.paddingBottom = (keyboardH > 0 ? keyboardH + 8 : 'calc(var(--safe-bottom) + 14px)') + 'px';
-      inputZone.style.transition = 'padding-bottom 0.15s ease';
+
+    if (els.inputZone) {
+      els.inputZone.style.paddingBottom = (keyboardH > 0 ? keyboardH + 8 : 'calc(var(--safe-bottom) + 14px)') + 'px';
+      els.inputZone.style.transition = 'padding-bottom 0.15s ease';
     }
-    // Scroll to bottom
-    if (chatWrap) {
-      setTimeout(function() { chatWrap.scrollTop = chatWrap.scrollHeight; }, 100);
+    if (els.chatWrap) {
+      setTimeout(function() { els.chatWrap.scrollTop = els.chatWrap.scrollHeight; }, 100);
     }
   }
-  
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', adjustForKeyboard);
-    window.visualViewport.addEventListener('scroll', adjustForKeyboard);
+
+  function attachListeners() {
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', adjustForKeyboard);
+      window.visualViewport.addEventListener('scroll', adjustForKeyboard);
+    }
+    var els = getEls();
+    if (els.userInput) {
+      els.userInput.addEventListener('focus', function() {
+        setTimeout(adjustForKeyboard, 300);
+        setTimeout(function() {
+          var cw = getEls().chatWrap;
+          if (cw) cw.scrollTop = cw.scrollHeight;
+        }, 500);
+      });
+      els.userInput.addEventListener('blur', function() {
+        setTimeout(adjustForKeyboard, 300);
+      });
+    }
   }
-  
-  // Also fix on input focus
-  var userInput = document.getElementById('user-input');
-  if (userInput) {
-    userInput.addEventListener('focus', function() {
-      setTimeout(adjustForKeyboard, 300);
-      setTimeout(function() {
-        if (chatWrap) chatWrap.scrollTop = chatWrap.scrollHeight;
-      }, 500);
-    });
-    userInput.addEventListener('blur', function() {
-      setTimeout(adjustForKeyboard, 300);
-    });
+
+  // DOMContentLoaded ke baad attach karo — null kabhi nahi milega
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachListeners);
+  } else {
+    attachListeners();
   }
 })();
 
@@ -3049,15 +3146,16 @@ setInterval(function() {
   var GH_REPO = 'Zaki-ai';
   var GH_FILE = 'zaki-ai-v8.html';
   var APP_VER = 'v8.1';
-  var VER_URL = 'https://raw.githubusercontent.com/' + GH_USER + '/' + GH_REPO + '/main/version.txt';
+  var VER_URL = 'https://raw.githubusercontent.com/' + GH_USER + '/' + GH_REPO + '/main/version.json';
   var UPD_URL = 'https://raw.githubusercontent.com/' + GH_USER + '/' + GH_REPO + '/main/' + GH_FILE;
   var updating = false;
 
   function checkUpdate() {
     fetch(VER_URL + '?t=' + Date.now(), { cache: 'no-store' })
-      .then(function(r) { return r.ok ? r.text() : null; })
-      .then(function(v) {
-        if (v && v.trim() && v.trim() !== APP_VER && !updating) {
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(data) {
+        var v = data && data.version ? data.version.trim() : null;
+        if (v && v !== APP_VER && !updating) {
           updating = true;
           autoDownload(v.trim());
         }
