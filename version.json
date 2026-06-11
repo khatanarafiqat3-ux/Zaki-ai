@@ -1,5 +1,5 @@
 {
-  "version": "v8.1",
+  "version": "v8.2",
   "releaseDate": "2025-06-09",
   "changelog": "Bug fixes: File upload, Urdu language, Dobara button, syntax errors fixed"
 }
